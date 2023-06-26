@@ -13,6 +13,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
   plugins: [
 
     new HtmlWebpackPlugin({
+      template: "./src/index.html",
 
       title: 'JS Capstone Group Project',
 
@@ -20,7 +21,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
   ],
    output: {
-     filename: '[name].bundle.js',
+     filename: 'index.js',
      path: path.resolve(__dirname, 'dist'),
    },
    module: {
@@ -28,6 +29,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
+      },
+       {
+
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+
+        type: 'asset/resource',
+
       },
     ],
   },
