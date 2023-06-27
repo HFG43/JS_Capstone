@@ -27,6 +27,32 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.html$/i,
+        use: [
+          {
+            loader: 'html-loader',
+            options: {
+              sources: {
+                list: [
+                  // Process <img> tags
+                  {
+                    tag: 'img',
+                    attribute: 'src',
+                    type: 'src',
+                  },
+                  // Process <link> tags with the "href" attribute
+                  {
+                    tag: 'link',
+                    attribute: 'href',
+                    type: 'src',
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
