@@ -1,6 +1,9 @@
 import './style.css';
 
 const showsContainer = document.querySelector('.main_content_container');
+const searchForm = document.querySelector('form');
+const searchFormInput = document.getElementById('search_text');
+
 class Shows {
   constructor(id, image, title, like) {
     this.id = id;
@@ -10,14 +13,22 @@ class Shows {
   }
 }
 
-const getTVShows = async () => {
+const getTVShows = async (search) => {
+  console.log(search);
   const resultPrograms = await fetch(
-    'https://api.tvmaze.com/search/shows?q=all'
+    `https://api.tvmaze.com/search/shows?q=${search}`,
   );
   const programList = await resultPrograms.json();
   return programList;
 };
-getTVShows();
+
+searchForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const search = searchFormInput.value;
+  searchForm.reset();
+  await getTVShows(search);
+  return search;
+});
 
 const setNewShow = async () => {
   const programList = await getTVShows();
