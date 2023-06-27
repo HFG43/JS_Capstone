@@ -1,5 +1,13 @@
-const path = require('path');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+<<<<<<< HEAD
+module.exports = {
+  mode: "development",
+  entry: "./src/index.js",
+  devServer: {
+    static: "./dist",
+=======
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -9,20 +17,29 @@ module.exports = {
   },
   devServer: {
     static: './dist',
+>>>>>>> feature/Day_Zero
   },
   plugins: [
-
     new HtmlWebpackPlugin({
+<<<<<<< HEAD
+      template: "./src/index.html",
+=======
       template: './src/index.html',
 
       title: 'JS Capstone Group Project',
 
+>>>>>>> feature/Day_Zero
     }),
-
   ],
   output: {
+<<<<<<< HEAD
+    filename: "index.js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true,
+=======
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
+>>>>>>> feature/Day_Zero
   },
   module: {
     rules: [
@@ -54,7 +71,11 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
       },
       {
 
