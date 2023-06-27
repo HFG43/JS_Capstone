@@ -1,0 +1,29 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main_content_container {
+  margin: 1rem;
+  display: flex;
+}
+
+.show_container{
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.show_image {
+  height: 250px;
+  width: auto;    
+}
+
+.card_title {
+  font-size: 1rem;
+}
+
+.comment_button {
+  width: 100px;
+  height: 30px;
+}
