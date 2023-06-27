@@ -1,17 +1,19 @@
 import './style.css';
+import Shows from './shows.js';
+import { showsContainer, searchForm, searchFormInput } from './dynamics.js';
 
-const showsContainer = document.querySelector('.main_content_container');
-const searchForm = document.querySelector('form');
-const searchFormInput = document.getElementById('search_text');
+// const showsContainer = document.querySelector('.main_content_container');
+// const searchForm = document.querySelector('form');
+// const searchFormInput = document.getElementById('search_text');
 
-class Shows {
-  constructor(id, image, title, like) {
-    this.id = id;
-    this.image = image;
-    this.title = title;
-    this.like = like;
-  }
-}
+// class Shows {
+//   constructor(id, image, title, like) {
+//     this.id = id;
+//     this.image = image;
+//     this.title = title;
+//     this.like = like;
+//   }
+// }
 
 const getTVShows = async (search) => {
   if(search === undefined) {
