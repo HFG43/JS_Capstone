@@ -14,20 +14,31 @@ class Shows {
 }
 
 const getTVShows = async (search) => {
-  console.log(search);
   const resultPrograms = await fetch(
     `https://api.tvmaze.com/search/shows?q=${search}`,
   );
+  console.log(resultPrograms);
   const programList = await resultPrograms.json();
-  return programList;
+  await generateShowCard();
+  // return programList;
 };
+
+// const getTVShows = async (search) => {
+//   console.log(search);
+//   const resultPrograms = await fetch(
+//     `https://api.tvmaze.com/search/shows?q=${search}`,
+//   );
+//   console.log(resultPrograms);
+//   const programList = await resultPrograms.json();
+//   return programList;
+// };
 
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const search = searchFormInput.value;
   searchForm.reset();
   await getTVShows(search);
-  return search;
+//   await generateShowCard();
 });
 
 const setNewShow = async () => {
