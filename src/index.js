@@ -14,13 +14,16 @@ class Shows {
 }
 
 const getTVShows = async (search) => {
+  if(search === undefined) {
+    search = 'action';
+  }
+  console.log(search);
   const resultPrograms = await fetch(
     `https://api.tvmaze.com/search/shows?q=${search}`,
   );
-  console.log(resultPrograms);
   const programList = await resultPrograms.json();
-  await generateShowCard();
-  // return programList;
+  const newProgramList = setNewShow(programList);
+  return newProgramList;
 };
 
 // const getTVShows = async (search) => {
@@ -36,13 +39,11 @@ const getTVShows = async (search) => {
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const search = searchFormInput.value;
-  searchForm.reset();
-  await getTVShows(search);
-//   await generateShowCard();
+  searchForm.reset(); 
+  generateShowCard(search);
 });
 
-const setNewShow = async () => {
-  const programList = await getTVShows();
+const setNewShow = (programList) => {
   let tvShows = [];
   programList.forEach((program) => {
     const { id, image } = program.show;
@@ -53,10 +54,9 @@ const setNewShow = async () => {
   });
   return tvShows;
 };
-setNewShow();
 
-const generateShowCard = async () => {
-  const tvShows = await setNewShow();
+const generateShowCard = async (search) => {
+  const tvShows = await getTVShows(search);
   tvShows.forEach((show) => {
     const showCard = document.createElement('div');
     showCard.classList.add('show_container');
@@ -84,4 +84,3 @@ const generateShowCard = async () => {
     showsContainer.appendChild(showCard);
   });
 };
-generateShowCard();
