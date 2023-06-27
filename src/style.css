@@ -1,0 +1,41 @@
+@font-face {
+
+  font-family: 'Bacasime Antique';
+
+  src: url('./fonts/YsabeauOffice-Black.ttf') format('ttf'),
+    url('./fonts/YsabeauOffice-Bold.ttf') format('ttf'),
+    url('./fonts/YsabeauOffice-ExtraBold.ttf') format('ttf'),
+     url('./fonts/YsabeauOffice-Medium.ttf') format('ttf'),
+      url('./fonts/YsabeauOffice-SemiBold.ttf') format('ttf');
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+* {
+    margin-left: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    font-family: 'YsabeauOffice-ExtraBold', sans-serif;
+}
+
+.image {
+    height: 70px;
+    width: 50px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 0 12px 0 12px;
+}
+
+.main-heading {
+    font-size: 18px;
+    padding-top: 18px;
+}
