@@ -2,10 +2,8 @@ import './style.css';
 import Shows from './shows.js';
 import { showsContainer, searchForm, searchFormInput } from './dynamic.js';
 import likes from './images/Empty_Like.svg';
+import popUp from './popUp.js';
 
-export let showCard; export let
-  commentButton; export let search; export let
-  show;
 const setNewShow = (programList) => {
   let tvShows = [];
   programList.forEach((program) => {
@@ -13,7 +11,6 @@ const setNewShow = (programList) => {
     const title = program.show.name;
     const like = false;
     const newShow = new Shows(id, image, title, like, genres, type, runtime, language);
-    console.log(newShow);
     if (image) {
       tvShows = [...tvShows, newShow];
     }
@@ -37,8 +34,7 @@ const getTVShows = async (search) => {
   return newProgramList;
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export const displayShows = async (search) => {
+const displayShows = async (search) => {
   showsContainer.innerHTML = '';
   searchFormInput.placeholder = 'Search for your favorite TV show or Genre';
   searchFormInput.classList.remove('error_input_show');
@@ -74,9 +70,12 @@ export const displayShows = async (search) => {
     const commentButton = document.createElement('button');
     commentButton.type = 'button';
     commentButton.innerText = 'Comments';
+    commentButton.id = show.id;
     commentButton.classList.add('comment_button');
+    commentButton.addEventListener('click', async () => {
+      await popUp(show);
+    });
     showCard.appendChild(commentButton);
-
     showsContainer.appendChild(showCard);
   });
 };
@@ -86,4 +85,4 @@ searchForm.addEventListener('submit', async (event) => {
   const search = searchFormInput.value;
   searchForm.reset();
   displayShows(search);
-});
+})
