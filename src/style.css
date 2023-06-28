@@ -65,9 +65,14 @@ body {
   flex-direction: column;
 }
 
-#search_text {
+.search_textok {
   margin: 8px 0 4px 0;
   width: 100%;
+  outline: 1px solid rgb(26, 71, 250);
+}
+
+.error_input_show {
+  outline: 3px solid rgb(230, 55, 11);
 }
 
 #search_button {

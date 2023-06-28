@@ -26,11 +26,17 @@ const getTVShows = async (search) => {
   );
   const programList = await resultPrograms.json();
   const newProgramList = setNewShow(programList);
+  if(newProgramList.length <= 0) {
+    searchFormInput.placeholder = 'Please try with another TV Show';
+    searchFormInput.classList.add('error_input_show');
+       }
   return newProgramList;
 };
 
 const displayShows = async (search) => {
   showsContainer.innerHTML = '';
+  searchFormInput.placeholder = 'Type Search your favorite TV show or Genre';
+  searchFormInput.classList.remove('error_input_show');
   const tvShows = await getTVShows(search);
   tvShows.forEach((show) => {
     const showCard = document.createElement("div");
