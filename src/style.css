@@ -1,41 +1,158 @@
 @font-face {
-
   font-family: 'Bacasime Antique';
-
-  src: url('./fonts/YsabeauOffice-Black.ttf') format('ttf'),
+  src:
+    url('./fonts/YsabeauOffice-Black.ttf') format('ttf'),
     url('./fonts/YsabeauOffice-Bold.ttf') format('ttf'),
     url('./fonts/YsabeauOffice-ExtraBold.ttf') format('ttf'),
-     url('./fonts/YsabeauOffice-Medium.ttf') format('ttf'),
-      url('./fonts/YsabeauOffice-SemiBold.ttf') format('ttf');
+    url('./fonts/YsabeauOffice-Medium.ttf') format('ttf'),
+    url('./fonts/YsabeauOffice-SemiBold.ttf') format('ttf');
   font-weight: 600;
   font-style: normal;
 }
 
-
 * {
-    margin-left: 0;
-}
-
-body {
-    height: 100vh;
-    width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .header {
-    display: flex;
-    justify-content: center;
-    font-family: 'YsabeauOffice-ExtraBold', sans-serif;
+  display: flex;
+  justify-content: center;
+  font-family: 'YsabeauOffice-ExtraBold', sans-serif;
 }
 
 .image {
-    height: 70px;
-    width: 50px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    padding: 0 12px 0 12px;
+  height: 70px;
+  width: auto;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 0 12px 0 12px;
+  margin-top: 12px;
 }
 
 .main-heading {
-    font-size: 18px;
-    padding-top: 18px;
+  font-size: 18px;
+  padding-top: 18px;
+}
+
+.main_content_container {
+  margin: 0.5rem;
+  display: flex;
+  border: 1px solid rgb(202, 202, 203);
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+
+.main_content_container::-webkit-scrollbar {
+  width: 2px;
+}
+
+.main_content_container::-webkit-scrollbar-thumb {
+  background-color: rgb(97, 125, 240);
+  border-radius: 3px;
+}
+
+#search_tv_show_form {
+  margin: 1rem 10% 0 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+.search_textok {
+  margin: 8px 0 4px 0;
+  width: 100%;
+  outline: 1px solid rgb(26, 71, 250);
+}
+
+.error_input_show {
+  outline: 3px solid rgb(230, 55, 11);
+}
+
+#search_button {
+  font-family: 'YsabeauOffice-ExtraBold', sans-serif;
+  margin-left: 65%;
+  width: 35%;
+}
+
+.show_container {
+  margin: 5px 0.35rem 10px 0.35rem;
+  border: 2px solid rgb(26, 71, 250);
+  box-shadow: 3px 3px rgb(126, 150, 246);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.show_image {
+  height: auto;
+  width: 150px;
+  margin-bottom: 105px;
+}
+
+.title_like_container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 15px;
+  margin-bottom: 5px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card_title {
+  font-size: 0.8rem;
+  margin: 0.5rem;
+  padding: 15px 0;
+}
+
+.like_icon {
+  height: 20px;
+  margin-right: 3px;
+}
+
+.comment_button {
+  font-family: 'YsabeauOffice-ExtraBold', sans-serif;
+  width: 92%;
+  height: 30px;
+  position: absolute;
+  bottom: 5px;
+  margin: 0 4% 0 4%;
+  border: none;
+  background-color: rgb(239, 239, 247);
+  box-shadow: 1.5px 1.5px rgb(126, 150, 246);
+}
+
+.footer {
+  margin: 10% 10% 0 10%;
+  font-size: 0.7rem;
+  font-family: 'YsabeauOffice-ExtraBold', sans-serif;
+}
+
+@media all and (min-width: 768px) {
+  .image {
+    height: 120px;
+    width: auto;
+  }
+
+  #search_tv_show_form {
+    margin: 1rem 20% 0 20%;
+    flex-direction: row;
+  }
+
+  #search_button {
+    width: 20%;
+    margin-left: 5%;
+  }
+
+  .show_image {
+    height: 200px;
+    width: auto;
+  }
+
+  .footer {
+    margin-top: 60px;
+  }
 }
