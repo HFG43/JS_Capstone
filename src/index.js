@@ -3,9 +3,11 @@ import Shows from './shows.js';
 import { showsContainer, searchForm, searchFormInput } from './dynamic.js';
 import likes from './images/Empty_Like.svg';
 import popUp from './popUp.js';
+import postAppForID from './createAppId.js';
 
 const setNewShow = (programList) => {
   let tvShows = [];
+  postAppForID();
   programList.forEach((program) => {
     const {
       id, image, genres, type, runtime, language,
