@@ -2,15 +2,17 @@ import './style.css';
 import Shows from './shows.js';
 import { showsContainer, searchForm, searchFormInput } from './dynamic.js';
 import likes from './images/Empty_Like.svg';
+import popUp from './popUp.js';
 
 const setNewShow = (programList) => {
   let tvShows = [];
   programList.forEach((program) => {
-    const { id, image, genres, type, runtime, language } = program.show;
+    const {
+      id, image, genres, type, runtime, language,
+    } = program.show;
     const title = program.show.name;
     const like = false;
     const newShow = new Shows(id, image, title, like, genres, type, runtime, language);
-    console.log(newShow);
     if (image) {
       tvShows = [...tvShows, newShow];
     }
@@ -70,7 +72,11 @@ const displayShows = async (search) => {
     const commentButton = document.createElement('button');
     commentButton.type = 'button';
     commentButton.innerText = 'Comments';
+    commentButton.id = show.id;
     commentButton.classList.add('comment_button');
+    commentButton.addEventListener('click', async () => {
+      await popUp(show);
+    });
     showCard.appendChild(commentButton);
     showsContainer.appendChild(showCard);
   });
