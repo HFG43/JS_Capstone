@@ -13,9 +13,8 @@
     <h1 class="main-heading">TV Series</h1>
   </header>
   <main>
-    <form>
-      <label for="search_text">Search your favorite TV show</label>
-      <input type="text" id="search_text" placeholder="Type your TV Show name or Category desired">
+    <form id="search_tv_show_form">
+      <input type="text" id="search_text" pattern="^[A-Za-z0-9]+([ ]?[A-Za-z0-9]+)?$" placeholder="Type Search your favorite TV show or Genre">
       <button type="submit" id="search_button">Search</button>
     </form> 
 
