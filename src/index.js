@@ -80,25 +80,25 @@ const displayShows = async (search) => {
       popUpContainer.innerHTML = `
      <div class="pop-container">
       <div class="pop-up-header">
-        <h2 class="book-title">${pick.show.name}</h2>
+        <h2 class="movie-title">${pick.show.name}</h2>
         <button id="close-modal-btn">x</button>
       </div>
       <div class="pop-up-body">
         <div class="image-container">
-          <img src='${pick.show.language}' class="book-image">
+          <img src='${pick.show.language}' class="movie-image">
         </div>
         <div class="pop-up-content">
           <div class="left-content">
             <label>Author:</label>
-            <div class="book-data">${pick.show.genres[0]}</div>
+            <div class="movie-data">${pick.show.genres[0]}</div>
             <label>Category:</label>
-            <div class="book-data">${pick.show.genres.runtime}</div>
+            <div class="movie-data">${pick.show.genres.runtime}</div>
           </div>
           <div class="rigth-content">
             <label>Published date:</label>
-            <div class="book-data">${pick.show.type}</div>
+            <div class="movie-data">${pick.show.type}</div>
             <label>Language:</label>
-            <div class="book-data">${pick.show.url}</div>
+            <div class="movie-data">${pick.show.url}</div>
           </div>
         </div>
       </div>

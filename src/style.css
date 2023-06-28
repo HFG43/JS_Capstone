@@ -223,7 +223,7 @@ article#pop-up {
   align-items: flex-start;
 }
 
-.book-data {
+.movie-data {
   padding-left: 30px;
   margin-bottom: 8;
 }
@@ -246,7 +246,7 @@ button#close-modal-btn {
   right: 0;
 }
 
-.book-cover {
+.movie-cover {
   width: 200px;
   height: 250px;
   box-shadow:
