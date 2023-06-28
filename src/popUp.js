@@ -34,6 +34,14 @@ const popUp = async (show) => {
         <h3>Comments (${show.comments.length})</h3>
         <ul id="comments-list"></ul>
       </div>
+      <div class="pop-up-form">
+        <h3>Add a comment</h3>
+        <form id="new-comment">
+          <input id="user" type="text" name="user" placeholder="Your name" required></input>
+          <textarea id="comment" name="user" placeholder="Add your comment" required></textarea>
+          <button class="add-comment" id="comment-btn">Comment</button>
+        </form>
+      </div>
      </div>
    `;
   document.body.append(popUpContainer);
