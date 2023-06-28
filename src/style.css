@@ -252,3 +252,44 @@ button#close-modal-btn {
     rgba(0, 0, 0, 0.3) 0 3px 7px -3px;
   border-radius: 20px;
 }
+
+.pop-up-comments,
+.pop-up-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form#new-comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+textarea {
+  font-size: 1.5rem;
+  border: 3px solid dodgerblue;
+  box-shadow:
+    rgba(70, 70, 90, 0.25) 0 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0 3px 7px -3px;
+  border-radius: 20px;
+  margin: 8px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: 0.3s;
+  resize: none;
+  width: 270px;
+  height: 150px;
+}
+
+textarea:focus {
+  border-color: dodgerblue;
+  box-shadow: 0 0 8px 0 dodgerblue;
+}
+
+#comments-list {
+  flex-direction: column;
+}
