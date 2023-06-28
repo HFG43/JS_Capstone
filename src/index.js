@@ -74,42 +74,49 @@ const displayShows = async (search) => {
     showCard.appendChild(commentButton);
     // Pop up function
     const popUp = async (pick) => {
-      pick.comments = await (getTVShows(pick.id));
+      // Make the API call to fetch comments for the selected item
+      const commentsResponse = await fetch(`https://api.tvmaze.com/search/shows?q=${search}`);
+      const commentsData = await commentsResponse.json();
+
+      // Store the comments in the pick object
+      pick.comments = commentsData;
+
       const popUpContainer = document.createElement('article');
       popUpContainer.id = 'pop-up';
       popUpContainer.innerHTML = `
-     <div class="pop-container">
+    <div class="pop-container">
       <div class="pop-up-header">
-        <h2 class="movie-title">${pick.show.name}</h2>
+        <h2 class="movie-title">${pick.title}</h2>
         <button id="close-modal-btn">x</button>
       </div>
       <div class="pop-up-body">
         <div class="image-container">
-          <img src='${pick.show.language}' class="movie-image">
+          <img src='${pick.image.medium}' class="movie-image">
         </div>
         <div class="pop-up-content">
           <div class="left-content">
-            <label>Author:</label>
-            <div class="movie-data">${pick.show.genres[0]}</div>
-            <label>Category:</label>
-            <div class="movie-data">${pick.show.genres.runtime}</div>
+            <label>Genre:</label>
+            <div class="movie-data">${pick.genres}</div>
+            <label>RunTime:</label>
+            <div class="movie-data">${pick.country}</div>
           </div>
-          <div class="rigth-content">
-            <label>Published date:</label>
-            <div class="movie-data">${pick.show.type}</div>
+          <div class="right-content">
+            <label>Show Type:</label>
+            <div class="movie-data">${pick.type}</div>
             <label>Language:</label>
-            <div class="movie-data">${pick.show.url}</div>
+            <div class="movie-data">${pick.language}</div>
           </div>
         </div>
       </div>
-     </div>
-     `;
+    </div>
+  `;
       document.body.append(popUpContainer);
       const closeBtn = document.getElementById('close-modal-btn');
       closeBtn.addEventListener('click', () => {
         popUpContainer.remove();
       });
     };
+
     showsContainer.appendChild(showCard);
     commentButton.addEventListener('click', () => {
       popUp(show);
