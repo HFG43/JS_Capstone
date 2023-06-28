@@ -49,5 +49,12 @@ const popUp = async (show) => {
   closeBtn.addEventListener('click', () => {
     popUpContainer.remove();
   });
+  const addComentBtn = document.getElementById('comment-btn');
+  addComentBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const userInput = document.getElementById('user').value;
+    const textAreaInput = document.getElementById('comment').value;
+    createComment(item.id, userInput, textAreaInput);
+  });
 };
 export default popUp;
