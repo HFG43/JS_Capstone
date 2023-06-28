@@ -107,8 +107,11 @@ body {
   font-size: 0.8rem;
   margin: 0.5rem;
   padding: 15px 0;
-  /* position: absolute;
-  bottom: 25px; */
+}
+
+.like_icon {
+  height: 20px;
+  margin-right: 3px;
 }
   
 .comment_button {
