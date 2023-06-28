@@ -1,8 +1,7 @@
 @font-face {
-
   font-family: 'Bacasime Antique';
-
-  src: url('./fonts/YsabeauOffice-Black.ttf') format('ttf'),
+  src:
+    url('./fonts/YsabeauOffice-Black.ttf') format('ttf'),
     url('./fonts/YsabeauOffice-Bold.ttf') format('ttf'),
     url('./fonts/YsabeauOffice-ExtraBold.ttf') format('ttf'),
     url('./fonts/YsabeauOffice-Medium.ttf') format('ttf'),
@@ -13,14 +12,9 @@
 
 * {
   margin: 0;
-  padding: 0 auto;
-  box-sizing: border-box; 
+  padding: 0;
+  box-sizing: border-box;
 }
-/* 
-body {
-  height: 100vh;
-  width: 100%;
-} */
 
 .header {
   display: flex;
@@ -47,15 +41,15 @@ body {
   display: flex;
   border: 1px solid rgb(202, 202, 203);
   overflow-x: scroll;
-  scroll-behavior: smooth;  
+  scroll-behavior: smooth;
 }
 
 .main_content_container::-webkit-scrollbar {
-  width: 2px;  
+  width: 2px;
 }
 
 .main_content_container::-webkit-scrollbar-thumb {
-  background-color: rgb(97, 125, 240); 
+  background-color: rgb(97, 125, 240);
   border-radius: 3px;
 }
 
@@ -81,7 +75,7 @@ body {
   width: 35%;
 }
 
-.show_container{
+.show_container {
   margin: 5px 0.35rem 10px 0.35rem;
   border: 2px solid rgb(26, 71, 250);
   box-shadow: 3px 3px rgb(126, 150, 246);
@@ -90,11 +84,11 @@ body {
   flex-direction: column;
   position: relative;
 }
-  
+
 .show_image {
   height: auto;
   width: 150px;
-  margin-bottom: 105px;   
+  margin-bottom: 105px;
 }
 
 .title_like_container {
@@ -118,7 +112,7 @@ body {
   height: 20px;
   margin-right: 3px;
 }
-  
+
 .comment_button {
   font-family: 'YsabeauOffice-ExtraBold', sans-serif;
   width: 92%;
@@ -138,10 +132,9 @@ body {
 }
 
 @media all and (min-width: 768px) {
-
   .image {
     height: 120px;
-    width: auto;   
+    width: auto;
   }
 
   #search_tv_show_form {
@@ -156,10 +149,10 @@ body {
 
   .show_image {
     height: 200px;
-    width: auto;    
+    width: auto;
   }
 
   .footer {
     margin-top: 60px;
-  }  
+  }
 }
