@@ -1,6 +1,5 @@
 // Pop up function
 const popUp = async (show) => {
-  console.log(show);
   const popUpContainer = document.createElement('article');
   popUpContainer.id = 'pop-up';
   popUpContainer.innerHTML = `

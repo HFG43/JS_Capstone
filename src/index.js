@@ -7,7 +7,9 @@ import popUp from './popUp.js';
 const setNewShow = (programList) => {
   let tvShows = [];
   programList.forEach((program) => {
-    const { id, image, genres, type, runtime, language } = program.show;
+    const {
+      id, image, genres, type, runtime, language,
+    } = program.show;
     const title = program.show.name;
     const like = false;
     const newShow = new Shows(id, image, title, like, genres, type, runtime, language);
@@ -85,4 +87,4 @@ searchForm.addEventListener('submit', async (event) => {
   const search = searchFormInput.value;
   searchForm.reset();
   displayShows(search);
-})
+});
