@@ -30,6 +30,10 @@ const popUp = async (show) => {
            </div>
          </div>
        </div>
+       <div class="pop-up-comments">
+        <h3>Comments (${show.comments.length})</h3>
+        <ul id="comments-list"></ul>
+      </div>
      </div>
    `;
   document.body.append(popUpContainer);
