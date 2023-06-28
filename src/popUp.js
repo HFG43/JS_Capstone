@@ -54,7 +54,17 @@ const popUp = async (show) => {
     e.preventDefault();
     const userInput = document.getElementById('user').value;
     const textAreaInput = document.getElementById('comment').value;
-    createComment(item.id, userInput, textAreaInput);
+    createComment(show.id, userInput, textAreaInput);
   });
+  const commentList = document.getElementById('comments-list');
+  if (show.comments.length > 0) {
+    show.comments.map((item) => {
+      const itemList = document.createElement('li');
+      itemList.innerHTML = `
+        <div>${item.comment}</div>
+      `;
+      return commentList.append(itemList);
+    });
+  }
 };
 export default popUp;
