@@ -1,8 +1,8 @@
-import './style.css';
-import Shows from './shows.js';
 import { showsContainer, searchForm, searchFormInput } from './dynamic.js';
 import likes from './images/Empty_Like.svg';
 import popUp from './popUp.js';
+import getTVShows from './getTvShow.js';
+
 const displayShows = async (search) => {
   showsContainer.innerHTML = '';
   searchFormInput.placeholder = 'Search for your favorite TV show or Genre';

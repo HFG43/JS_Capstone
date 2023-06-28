@@ -1,5 +1,8 @@
+import getTVShows from './getTvShow.js';
+
 // Pop up function
 const popUp = async (show) => {
+  show.comments = await (getTVShows(show.id));
   const popUpContainer = document.createElement('article');
   popUpContainer.id = 'pop-up';
   popUpContainer.innerHTML = `
