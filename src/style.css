@@ -201,6 +201,11 @@ article#pop-up {
   margin-bottom: 30px;
 }
 
+.movie-image {
+  height: 300px;
+  width: 250px;
+}
+
 .pop-up-content {
   display: flex;
   justify-content: center;
