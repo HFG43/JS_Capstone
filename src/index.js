@@ -9,10 +9,11 @@ export let showCard; export let
 const setNewShow = (programList) => {
   let tvShows = [];
   programList.forEach((program) => {
-    const { id, image } = program.show;
+    const { id, image, genres, type, runtime, language } = program.show;
     const title = program.show.name;
     const like = false;
-    const newShow = new Shows(id, image, title, like);
+    const newShow = new Shows(id, image, title, like, genres, type, runtime, language);
+    console.log(newShow);
     if (image) {
       tvShows = [...tvShows, newShow];
     }
@@ -30,7 +31,7 @@ const getTVShows = async (search) => {
   const programList = await resultPrograms.json();
   const newProgramList = setNewShow(programList);
   if (newProgramList.length <= 0) {
-    searchFormInput.placeholder = 'Please try with another TV Show';
+    searchFormInput.placeholder = 'Please try with another TV Show or Genre';
     searchFormInput.classList.add('error_input_show');
   }
   return newProgramList;
@@ -39,7 +40,7 @@ const getTVShows = async (search) => {
 // eslint-disable-next-line import/prefer-default-export
 export const displayShows = async (search) => {
   showsContainer.innerHTML = '';
-  searchFormInput.placeholder = 'Type Search your favorite TV show or Genre';
+  searchFormInput.placeholder = 'Search for your favorite TV show or Genre';
   searchFormInput.classList.remove('error_input_show');
   const tvShows = await getTVShows(search);
   tvShows.forEach((show) => {
