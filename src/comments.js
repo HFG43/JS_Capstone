@@ -13,7 +13,6 @@ const createComment = async (movieId, user, comment) => {
     },
   });
   const jsonResponse = await response.text();
-  console.log(jsonResponse);
 
   document.getElementById('user').value = '';
   document.getElementById('comment').value = '';
