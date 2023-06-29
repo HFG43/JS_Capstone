@@ -2,7 +2,8 @@ const createComment = async (movieId, user, comment) => {
   const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Bi5YfurxCUYnE9wwCG8E/comments', {
     method: 'POST',
     body: JSON.stringify({
-      show_id: movieId,
+      item_id: movieId,
+
       username: user,
       comment,
 
@@ -11,7 +12,9 @@ const createComment = async (movieId, user, comment) => {
       'Content-type': 'application/json; charset=UTF-8',
     },
   });
-  const jsonResponse = await response.json();
+  const jsonResponse = await response.text();
+  console.log(jsonResponse);
+
   return jsonResponse;
 };
 
