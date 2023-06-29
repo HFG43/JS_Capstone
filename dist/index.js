@@ -130,6 +130,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/getTvShow.js":
+/*!**************************!*\
+  !*** ./src/getTvShow.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _dynamic_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dynamic.js */ \"./src/dynamic.js\");\n/* harmony import */ var _shows_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shows.js */ \"./src/shows.js\");\n\n\n\nconst setNewShow = (programList) => {\n  let tvShows = [];\n  programList.forEach((program) => {\n    const {\n      id, image, genres, type, runtime, language,\n    } = program.show;\n    const title = program.show.name;\n    const like = false;\n    const newShow = new _shows_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"](id, image, title, like, genres, type, runtime, language);\n    if (image) {\n      tvShows = [...tvShows, newShow];\n    }\n  });\n  return tvShows;\n};\n\nconst getTVShows = async (search) => {\n  if (search === undefined) {\n    search = 'action';\n  }\n  const resultPrograms = await fetch(\n    `https://api.tvmaze.com/search/shows?q=${search}`,\n  );\n  const programList = await resultPrograms.json();\n  const newProgramList = setNewShow(programList);\n  if (newProgramList.length <= 0) {\n    _dynamic_js__WEBPACK_IMPORTED_MODULE_0__.searchFormInput.placeholder = 'Please try with another TV Show or Genre';\n    _dynamic_js__WEBPACK_IMPORTED_MODULE_0__.searchFormInput.classList.add('error_input_show');\n  }\n  return newProgramList;\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getTVShows);\n\n\n//# sourceURL=webpack://js_capstone/./src/getTvShow.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!

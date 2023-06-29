@@ -1,5 +1,8 @@
+import getTVShows from './getTvShow.js';
+
 // Pop up function
 const popUp = async (show) => {
+  show.comments = await (getTVShows(show.id));
   const popUpContainer = document.createElement('article');
   popUpContainer.id = 'pop-up';
   popUpContainer.innerHTML = `
@@ -27,6 +30,10 @@ const popUp = async (show) => {
            </div>
          </div>
        </div>
+       <div class="pop-up-comments">
+        <h3>Comments (${show.comments.length})</h3>
+        <ul id="comments-list"></ul>
+      </div>
      </div>
    `;
   document.body.append(popUpContainer);
