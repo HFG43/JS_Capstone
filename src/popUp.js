@@ -39,7 +39,7 @@ const popUp = async (show) => {
         <form id="new-comment">
           <input id="user" type="text" name="user" placeholder="Your name" required></input>
           <textarea id="comment" name="user" placeholder="Add your comment" required></textarea>
-          <button class="add-comment" id="comment-btn">Comment</button>
+          <button type="submit" class="add-comment" id="comment-btn">Comment</button>
         </form>
       </div>
      </div>
@@ -50,27 +50,30 @@ const popUp = async (show) => {
   closeBtn.addEventListener('click', () => {
     popUpContainer.remove();
   });
-  const addComentBtn = document.getElementById('comment-btn');
-  addComentBtn.addEventListener('click', (e) => {
+  const addCommentBtn = document.getElementById('comment-btn');
+  const commentList = document.getElementById('comments-list');
+  addCommentBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     const userInput = document.getElementById('user').value;
     const textAreaInput = document.getElementById('comment').value;
-    createComment(show.id, userInput, textAreaInput);
-  });
-  const commentList = document.getElementById('comments-list');
-  commentList.innerHTML = ''; // Clear existing comments before adding new ones
-  if (show.comments.length > 0) {
-    show.comments.map((show) => {
+    await createComment(show.id, userInput, textAreaInput);
+
+    // Clear existing comments before adding new ones
+    commentList.innerHTML = '';
+
+    // Fetch the updated comments and populate the comment list
+    const updatedComments = await getMovieData(show.id);
+    updatedComments.forEach((comment) => {
       const itemList = document.createElement('li');
       itemList.innerHTML = `
-        <div>
-          <span>${show.creation_date} </span>
-          <span class="user-name">${show.username}: </span>
-          <span>${show.comment}</span>
-        </div>
-      `;
-      return commentList.append(itemList);
+      <div>
+        <span>${comment.creation_date} </span>
+        <span class="user-name">${comment.username}: </span>
+        <span>${comment.comment}</span>
+      </div>
+    `;
+      commentList.appendChild(itemList);
     });
-  }
+  });
 };
 export default popUp;
