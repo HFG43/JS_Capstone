@@ -3,9 +3,7 @@ import Shows from './shows.js';
 import { showsContainer, searchForm, searchFormInput } from './dynamic.js';
 import likes from './images/Empty_Like.svg';
 import popUp from './popUp.js';
-// import postAppForID from './createAppId.js';
-import { addLikes, loadLikes, updateLikes } from './likes.js';
-// import { addLikes, updateLikes } from './likes.js';
+import { addLikes, updateLikes } from './likes.js';
 
 const setNewShow = (programList) => {
   let tvShows = [];
@@ -92,7 +90,6 @@ const displayShows = async (search) => {
     });
     showCard.appendChild(commentButton);
     showsContainer.appendChild(showCard);
-    await loadLikes(show.id);
   });
 };
 
