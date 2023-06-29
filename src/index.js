@@ -4,7 +4,8 @@ import { showsContainer, searchForm, searchFormInput } from './dynamic.js';
 import likes from './images/Empty_Like.svg';
 import popUp from './popUp.js';
 // import postAppForID from './createAppId.js';
-import addLikes from './likes.js';
+import { addLikes, loadLikes, updateLikes } from './likes.js';
+// import { addLikes, updateLikes } from './likes.js';
 
 const setNewShow = (programList) => {
   let tvShows = [];
@@ -43,7 +44,7 @@ const displayShows = async (search) => {
   searchFormInput.placeholder = 'Search for your favorite TV show or Genre';
   searchFormInput.classList.remove('error_input_show');
   const tvShows = await getTVShows(search);
-  tvShows.forEach((show) => {
+  tvShows.forEach(async (show) => {
     const showCard = document.createElement('div');
     showCard.classList.add('show_container');
 
@@ -70,13 +71,15 @@ const displayShows = async (search) => {
     likesIcon.classList.add('like_icon');
     likesIcon.addEventListener('click', async () => {
       await addLikes(show);
+      await updateLikes(show.id);
     });
     titleLikeContainer.appendChild(likesIcon);
     showCard.appendChild(titleLikeContainer);
 
     const likesCounter = document.createElement('span');
+    likesCounter.id = `likes_counter_${show.id}`;
     likesCounter.classList.add('likes_counter');
-    likesCounter.innerText = '0';
+    likesCounter.innerText = 0;
     titleLikeContainer.appendChild(likesCounter);
 
     const commentButton = document.createElement('button');
@@ -89,6 +92,7 @@ const displayShows = async (search) => {
     });
     showCard.appendChild(commentButton);
     showsContainer.appendChild(showCard);
+    await loadLikes(show.id);
   });
 };
 

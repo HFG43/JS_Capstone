@@ -1,8 +1,8 @@
-// ADD EVENT LISTENER TO LIKES
-// GET LIKES COUNT PER ID
-// GENERATE COUNTER USING INITIAL NUMBER
-// POST LIKES ID ++
-// SHOW IN LIKES
+const getLikes = async () => {
+  const getAllLikes = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Bi5YfurxCUYnE9wwCG8E/likes');
+  const data = await getAllLikes.json();
+  return data;
+};
 
 const postLike = async (showid) => {
   const response = await fetch(
@@ -18,22 +18,33 @@ const postLike = async (showid) => {
     },
   );
   const postLikesResponse = await response.text();
-  console.log(postLikesResponse);
   await getLikes();
   return postLikesResponse;
 };
 
-const getLikes = async () => {
-  const getAllLikes = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Bi5YfurxCUYnE9wwCG8E/likes');
-  const data = await getAllLikes.json();
-  console.log(data);
-  return data;
-};
-
-const addLikes = async (search) => {
+export const addLikes = async (search) => {
   const showid = search.id;
   await getLikes();
+  await postLike(showid);
   return showid;
 };
 
-export default addLikes;
+export const loadLikes = async (showid) => {
+  const likesData = await getLikes();
+  const likesCounted = document.getElementById(`likes_counter_${showid}`);
+  if (likesCounted) {
+    const likesCounter = likesData.filter((item) => item.item_id === showid);
+    if (likesCounter.length > 0) {
+      likesCounted.innerText = likesCounter[0].likes;
+    }
+  }
+};
+
+export const updateLikes = async (showid) => {
+  const likesData = await getLikes();
+  const likesCounted = document.getElementById(`likes_counter_${showid}`);
+  if (likesCounted) {
+    const likesCounter = likesData.filter((item) => item.item_id === showid);
+    likesCounted.innerText = likesCounter[0].likes;
+  }
+};
