@@ -74,6 +74,11 @@ const displayShows = async (search) => {
     titleLikeContainer.appendChild(likesIcon);
     showCard.appendChild(titleLikeContainer);
 
+    const likesCounter = document.createElement('span');
+    likesCounter.classList.add('likes_counter');
+    likesCounter.innerText = '0';
+    titleLikeContainer.appendChild(likesCounter);
+
     const commentButton = document.createElement('button');
     commentButton.type = 'button';
     commentButton.innerText = 'Comments';
