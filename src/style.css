@@ -156,7 +156,7 @@
     margin-top: 60px;
   }
 }
- 
+
 article#pop-up {
   position: fixed;
   width: 100%;
@@ -223,7 +223,7 @@ article#pop-up {
 
 .movie-data {
   padding-left: 30px;
-  margin-bottom: 8;
+  margin-bottom: 8px;
 }
 
 label {
