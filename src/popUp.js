@@ -45,6 +45,7 @@ const popUp = async (show) => {
      </div>
    `;
   document.body.append(popUpContainer);
+
   const closeBtn = document.getElementById('close-modal-btn');
   closeBtn.addEventListener('click', () => {
     popUpContainer.remove();
@@ -57,6 +58,7 @@ const popUp = async (show) => {
     createComment(show.id, userInput, textAreaInput);
   });
   const commentList = document.getElementById('comments-list');
+  commentList.innerHTML = ''; // Clear existing comments before adding new ones
   if (show.comments.length > 0) {
     show.comments.map((show) => {
       const itemList = document.createElement('li');
