@@ -1,4 +1,5 @@
 import getTVShows from './getTvShow.js';
+import { createComment } from './comments.js';
 
 // Pop up function
 const popUp = async (show) => {
@@ -58,10 +59,14 @@ const popUp = async (show) => {
   });
   const commentList = document.getElementById('comments-list');
   if (show.comments.length > 0) {
-    show.comments.map((item) => {
+    show.comments.map((show) => {
       const itemList = document.createElement('li');
       itemList.innerHTML = `
-        <div>${item.comment}</div>
+        <div>
+          <span>${show.creation_date} </span>
+          <span class="user-name">${show.username}: </span>
+          <span>${show.comment}</span>
+        </div>
       `;
       return commentList.append(itemList);
     });
