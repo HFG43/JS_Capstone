@@ -51,14 +51,21 @@ const popUp = async (show) => {
     popUpContainer.remove();
   });
   const addCommentBtn = document.getElementById('comment-btn');
+  const commentForm = document.getElementById('new-comment');
   const commentList = document.getElementById('comments-list');
   addCommentBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     const userInput = document.getElementById('user').value;
     const textAreaInput = document.getElementById('comment').value;
     await createComment(show.id, userInput, textAreaInput);
+    // Validate that both the user input and comment text are not empty
+    if (userInput.trim() === '' || textAreaInput.trim() === '') {
+    // Display an error message or take appropriate action
+      return;
+    }
 
     // Clear existing comments before adding new ones
+    commentForm.reset();
     commentList.innerHTML = '';
 
     // Fetch the updated comments and populate the comment list
@@ -74,6 +81,17 @@ const popUp = async (show) => {
     `;
       commentList.appendChild(itemList);
     });
+  });
+  // Add form submit event listener for validation
+  commentForm.addEventListener('submit', (e) => {
+    const userInput = document.getElementById('user').value;
+    const textAreaInput = document.getElementById('comment').value;
+
+    // Validate that both the user input and comment text are not empty
+    if (userInput.trim() === '' || textAreaInput.trim() === '') {
+    // Display an error message or take appropriate action
+      e.preventDefault(); // Prevent form submission
+    }
   });
 };
 export default popUp;
