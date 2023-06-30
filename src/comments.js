@@ -3,7 +3,6 @@ const createComment = async (movieId, user, comment) => {
     method: 'POST',
     body: JSON.stringify({
       item_id: movieId,
-
       username: user,
       comment,
 

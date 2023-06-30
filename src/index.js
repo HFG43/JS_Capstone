@@ -1,9 +1,42 @@
 import './style.css';
+import Shows from './shows.js';
 import { showsContainer, searchForm, searchFormInput } from './dynamic.js';
 import likes from './images/Empty_Like.svg';
 import popUp from './popUp.js';
-import getTVShows from './getTvShow.js';
+import { addLikes, updateLikes } from './likes.js';
 import { getMovieData } from './comments.js';
+
+const setNewShow = (programList) => {
+  let tvShows = [];
+  programList.forEach((program) => {
+    const {
+      id, image, genres, type, runtime, language,
+    } = program.show;
+    const title = program.show.name;
+    const like = false;
+    const newShow = new Shows(id, image, title, like, genres, type, runtime, language);
+    if (image) {
+      tvShows = [...tvShows, newShow];
+    }
+  });
+  return tvShows;
+};
+
+const getTVShows = async (search) => {
+  if (search === undefined) {
+    search = 'action';
+  }
+  const resultPrograms = await fetch(
+    `https://api.tvmaze.com/search/shows?q=${search}`,
+  );
+  const programList = await resultPrograms.json();
+  const newProgramList = setNewShow(programList);
+  if (newProgramList.length <= 0) {
+    searchFormInput.placeholder = 'Please try with another TV Show or Genre';
+    searchFormInput.classList.add('error_input_show');
+  }
+  return newProgramList;
+};
 
 const displayShows = async (search) => {
   showsContainer.innerHTML = '';
@@ -35,8 +68,18 @@ const displayShows = async (search) => {
     likesIcon.src = likes;
     likesIcon.alt = 'like_icon';
     likesIcon.classList.add('like_icon');
+    likesIcon.addEventListener('click', async () => {
+      await addLikes(show);
+      await updateLikes(show.id);
+    });
     titleLikeContainer.appendChild(likesIcon);
     showCard.appendChild(titleLikeContainer);
+
+    const likesCounter = document.createElement('span');
+    likesCounter.id = `likes_counter_${show.id}`;
+    likesCounter.classList.add('likes_counter');
+    likesCounter.innerText = 0;
+    titleLikeContainer.appendChild(likesCounter);
 
     const commentButton = document.createElement('button');
     commentButton.type = 'button';
