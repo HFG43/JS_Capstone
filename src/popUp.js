@@ -86,7 +86,7 @@ const popUp = async (show) => {
     const textAreaInput = document.getElementById('comment').value;
     await createComment(show.id, userInput, textAreaInput);
     // Validate that both the user input and comment text are not empty
-    if (userInput.trim() === '' || textAreaInput.trim() === '') {
+    if (userInput.trim() === '' && textAreaInput.trim() === '') {
     // Display an error message or take appropriate action
       return;
     }
