@@ -7,7 +7,7 @@ const countAll = async () => {
 
 const displayCountAll = async () => {
   const countValue = (await countAll()).toString();
-  displayAllCounter.innerText = countValue;
+  displayAllCounter.innerText = `(${countValue})`;
 };
 
 export default displayCountAll;
