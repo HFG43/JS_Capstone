@@ -40,8 +40,8 @@
 .main_content_container {
   margin: 0 20% 0 20%;
   display: flex;
-  flex-direction: column;  
-  border: 1px solid rgb(202, 202, 203);  
+  flex-direction: column;
+  border: 1px solid rgb(202, 202, 203);
 }
 
 .main_content_container::-webkit-scrollbar {
@@ -146,7 +146,6 @@
 }
 
 @media all and (min-width: 768px) {
- 
   .header {
     justify-content: space-between;
   }
@@ -157,7 +156,7 @@
   }
 
   .main-heading {
-    font-size: 24px;   
+    font-size: 24px;
   }
 
   #search_tv_show_form {
@@ -183,13 +182,13 @@
     font-size: 1rem;
     background-color: rgb(126, 150, 246);
   }
-  
+
   .main_content_container {
     margin: 0 2% 0 2%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    flex-direction: row;  
-    border: 1px solid rgb(202, 202, 203);  
+    flex-direction: row;
+    border: 1px solid rgb(202, 202, 203);
   }
 
   .show_container {
@@ -234,8 +233,6 @@
     text-align: center;
   }
 }
-
-/*-------------------POP UP-------------------*/
 
 article#pop-up {
   position: fixed;

@@ -23,11 +23,6 @@ const setNewShow = (programList) => {
   return tvShows;
 };
 
-window.addEventListener('DOMContentLoaded', async () => {
-  const search = 'action';
-  await displayShows(search); 
-});
-
 const getTVShows = async (search) => {
   if (search === undefined) {
     search = 'action';
@@ -39,7 +34,7 @@ const getTVShows = async (search) => {
   const newProgramList = setNewShow(programList);
   if (newProgramList.length <= 0) {
     searchFormInput.placeholder = 'No data found, please try another show or refresh the page';
-    searchFormInput.classList.add('error_input_show', 'error_input_show_height');   
+    searchFormInput.classList.add('error_input_show', 'error_input_show_height');
   }
   return newProgramList;
 };
@@ -100,6 +95,11 @@ const displayShows = async (search) => {
     await loadLikes(show.id);
   });
 };
+
+window.addEventListener('DOMContentLoaded', async () => {
+  const search = 'action';
+  await displayShows(search);
+});
 
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
