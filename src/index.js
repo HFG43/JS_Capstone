@@ -5,7 +5,7 @@ import {
 } from './dynamic.js';
 import likes from './images/Empty_Like.svg';
 import popUp from './popUp.js';
-import { addLikes, updateLikes } from './likes.js';
+import { addLikes, loadLikes, updateLikes } from './likes.js';
 import { getMovieData } from './comments.js';
 import displayCountAll from './allItemsCounter.js';
 
@@ -35,8 +35,8 @@ const getTVShows = async (search) => {
   const programList = await resultPrograms.json();
   const newProgramList = setNewShow(programList);
   if (newProgramList.length <= 0) {
-    searchFormInput.placeholder = 'Please try with another TV Show or Genre';
-    searchFormInput.classList.add('error_input_show');
+    searchFormInput.placeholder = 'No data found, please try another show or refresh the page';
+    searchFormInput.classList.add('error_input_show', 'error_input_show_height');
   }
   return newProgramList;
 };
@@ -95,9 +95,15 @@ const displayShows = async (search) => {
     });
     showCard.appendChild(commentButton);
     showsContainer.appendChild(showCard);
+    await loadLikes(show.id);
   });
   await displayCountAll();
 };
+
+window.addEventListener('DOMContentLoaded', async () => {
+  const search = 'action';
+  await displayShows(search);
+});
 
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
