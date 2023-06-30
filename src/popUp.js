@@ -1,8 +1,8 @@
 import { getMovieData, createComment } from './comments.js';
+import commentsCounter from './commentsCounter.js';
 
 // Pop up function
 const popUp = async (show) => {
-  
   const popUpContainer = document.createElement('article');
   popUpContainer.id = 'pop-up';
   popUpContainer.innerHTML = `
@@ -31,8 +31,9 @@ const popUp = async (show) => {
          </div>
        </div>
        <div class="pop-up-comments">
-        <h3>Comments (${show.comments.length})</h3>
-        <ul id="comments-list"></ul>
+        <h3 id="comments-header"> Comments (0)</h3>
+        <ul id="comments-list">
+        </ul>
       </div>
       <div class="pop-up-form">
         <h3>Add a comment</h3>
@@ -44,17 +45,37 @@ const popUp = async (show) => {
       </div>
      </div>
    `;
+
   document.body.append(popUpContainer);
   show.comments = await (getMovieData(show.id));
-  console.log('result', show.comments);
 
   const closeBtn = document.getElementById('close-modal-btn');
   closeBtn.addEventListener('click', () => {
     popUpContainer.remove();
   });
+  const renderComments = async () => {
+    const commentList = document.getElementById('comments-list');
+    commentList.innerHTML = '';
+
+    // Fetch the updated comments and populate the comment list
+    const updatedComments = await getMovieData(show.id);
+    updatedComments.forEach((comment) => {
+      const itemList = document.createElement('li');
+      itemList.classList.add('list-items');
+      itemList.innerHTML = `
+      <div>
+        <span>${comment.creation_date} </span>
+        <span class="user-name">${comment.username}: </span>
+        <span>${comment.comment}</span>
+      </div>
+    `;
+      commentList.appendChild(itemList);
+    });
+    commentsCounter();
+  };
   const addCommentBtn = document.getElementById('comment-btn');
   const commentForm = document.getElementById('new-comment');
-  const commentList = document.getElementById('comments-list');
+
   addCommentBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     const userInput = document.getElementById('user').value;
@@ -68,21 +89,6 @@ const popUp = async (show) => {
 
     // Clear existing comments before adding new ones
     commentForm.reset();
-    commentList.innerHTML = '';
-
-    // Fetch the updated comments and populate the comment list
-    const updatedComments = await getMovieData(show.id);
-    updatedComments.forEach((comment) => {
-      const itemList = document.createElement('li');
-      itemList.innerHTML = `
-      <div>
-        <span>${comment.creation_date} </span>
-        <span class="user-name">${comment.username}: </span>
-        <span>${comment.comment}</span>
-      </div>
-    `;
-      commentList.appendChild(itemList);
-    });
   });
   // Add form submit event listener for validation
   commentForm.addEventListener('submit', (e) => {
