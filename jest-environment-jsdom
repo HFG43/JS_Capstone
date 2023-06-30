@@ -1,0 +1,5 @@
+export default {
+  // other Jest configuration options
+  testEnvironment: 'jest-environment-jsdom',
+  // other Jest configuration options
+};

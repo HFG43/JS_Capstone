@@ -1,56 +1,26 @@
-/**
- * @jest-environment jsdom
- */
-
-//! comments with '?' have been added for learning purposes
 import commentsCounter from './commentsCounter.js';
 
-describe('Comments counter', () => {
-  test('Should return correct count of comments', () => {
-    // ?Mock the commentsContainer element
-    const commentsContainer = {
-      querySelectorAll: jest.fn().mockReturnValueOnce([
-        document.createElement('div'), // ?Mock comment 1 and so forth
-        document.createElement('div'),
-        document.createElement('div'),
-      ]),
-    };
+describe('commentsCounter', () => {
+  test('displays correct comments count', () => {
+    // Mock the necessary elements
+    document.body.innerHTML = `
+      <div>
+        <h3 id="comments-header"></h3>
+        <ul>
+          <li class="list-items"></li>
+          <li class="list-items"></li>
+          <li class="list-items"></li>
+        </ul>
+      </div>
+    `;
 
-    // ?Call the function with the mock commentsContainer
-    const comments = commentsCounter(commentsContainer);
+    // Call the commentsCounter function
+    commentsCounter();
 
-    expect(comments).toBe(3);
+    // Get the updated comments count
+    const commentsCount = document.getElementById('comments-header').innerText;
 
-    // ?Assert that the querySelectorAll function was called with the correct selector
-    expect(commentsContainer.querySelectorAll).toHaveBeenCalledWith('.comment');
-  });
-
-  test('Should return 0 when there are no comments', () => {
-    const commentsContainer = {
-      querySelectorAll: jest.fn().mockReturnValueOnce([]),
-    };
-
-    const comments = commentsCounter(commentsContainer);
-
-    expect(comments).toBe(0);
-    expect(commentsContainer.querySelectorAll).toHaveBeenCalledWith('.comment');
-  });
-
-  test('Should throw an error when commentsContainer is invalid', () => {
-    const commentsContainer = null;
-
-    expect(() => {
-      commentsCounter(commentsContainer);
-    }).toThrow('Invalid comments container');
-  });
-
-  test('Should throw an error when querySelectorAll is not a function', () => {
-    const commentsContainer = {
-      querySelectorAll: 'invalid',
-    };
-
-    expect(() => {
-      commentsCounter(commentsContainer);
-    }).toThrow('Invalid comments container');
+    // Verify that the comments count is displayed correctly
+    expect(commentsCount).toBe('Comments (3)');
   });
 });

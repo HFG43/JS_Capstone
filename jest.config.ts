@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /*
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
@@ -6,6 +7,7 @@
 export default {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
+  testEnvironment: 'jsdom',
 
   // Stop running tests after `n` failures
   // bail: 0,
@@ -23,7 +25,7 @@ export default {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
