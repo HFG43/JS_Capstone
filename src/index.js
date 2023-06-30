@@ -7,6 +7,7 @@ import likes from './images/Empty_Like.svg';
 import popUp from './popUp.js';
 import { addLikes, updateLikes } from './likes.js';
 import { getMovieData } from './comments.js';
+import displayCountAll from './allItemsCounter.js';
 
 const setNewShow = (programList) => {
   let tvShows = [];
@@ -95,6 +96,7 @@ const displayShows = async (search) => {
     showCard.appendChild(commentButton);
     showsContainer.appendChild(showCard);
   });
+  await displayCountAll();
 };
 
 searchForm.addEventListener('submit', async (event) => {
