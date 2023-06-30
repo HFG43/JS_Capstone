@@ -129,7 +129,7 @@ No test available yet.
 
 You can deploy this project using:
 
-([My portfolio deployment link] (https://hfg43.github.io/Leaderboard/)).
+([My portfolio deployment link] (https://hfg43.github.io/JS_Capstone/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -154,7 +154,7 @@ You can deploy this project using:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- **[Apply different ways to display elemnts on-demand]**
+- **[Apply different ways to display elements on-demand]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
