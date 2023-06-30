@@ -21,12 +21,13 @@ const createComment = async (movieId, user, comment) => {
 };
 
 const getMovieData = async (movieId) => {
-  const res = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Bi5YfurxCUYnE9wwCG8E/comments?item_id=${movieId}`);
-  const data = await res.json();
-  if (!data.error) {
+  try {
+    const res = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Bi5YfurxCUYnE9wwCG8E/comments?item_id=${movieId}`);
+    const data = await res.json();
     return data;
+  } catch (error) {
+    return error;
   }
-  return [];
 };
 
 export {
