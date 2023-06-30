@@ -29,6 +29,17 @@ export const addLikes = async (search) => {
   return showid;
 };
 
+export const loadLikes = async (showid) => {
+  const likesData = await getLikes();
+  const likesCounted = document.getElementById(`likes_counter_${showid}`);
+  if (likesCounted) {
+    const likesCounter = likesData.filter((item) => item.item_id === showid);
+    if (likesCounter.length > 0) {
+      likesCounted.innerText = likesCounter[0].likes;
+    }
+  }
+};
+
 export const updateLikes = async (showid) => {
   const likesData = await getLikes();
   const likesCounted = document.getElementById(`likes_counter_${showid}`);

@@ -1,15 +1,49 @@
 import './style.css';
-
-import { showsContainer, searchForm, searchFormInput } from './dynamic.js';
+import Shows from './shows.js';
+import {
+  showsContainer, searchForm, searchFormInput,
+} from './dynamic.js';
 import likes from './images/Empty_Like.svg';
 import popUp from './popUp.js';
-import { addLikes, updateLikes } from './likes.js';
-import getTVShows from './getTvShow.js';
+import { addLikes, loadLikes, updateLikes } from './likes.js';
 import { getMovieData } from './comments.js';
+import displayCountAll from './allItemsCounter.js';
+
+const setNewShow = (programList) => {
+  let tvShows = [];
+  programList.forEach((program) => {
+    const {
+      id, image, genres, type, runtime, language,
+    } = program.show;
+    const title = program.show.name;
+    const like = false;
+    const newShow = new Shows(id, image, title, like, genres, type, runtime, language);
+    if (image) {
+      tvShows = [...tvShows, newShow];
+    }
+  });
+  return tvShows;
+};
+
+const getTVShows = async (search) => {
+  if (search === undefined) {
+    search = 'action';
+  }
+  const resultPrograms = await fetch(
+    `https://api.tvmaze.com/search/shows?q=${search}`,
+  );
+  const programList = await resultPrograms.json();
+  const newProgramList = setNewShow(programList);
+  if (newProgramList.length <= 0) {
+    searchFormInput.placeholder = 'No data found, please try another show or refresh the page';
+    searchFormInput.classList.add('error_input_show', 'error_input_show_height');
+  }
+  return newProgramList;
+};
 
 const displayShows = async (search) => {
   showsContainer.innerHTML = '';
-  searchFormInput.placeholder = 'Search for your favorite TV show or Genre';
+  searchFormInput.placeholder = 'Search for your favorite TV show';
   searchFormInput.classList.remove('error_input_show');
   const tvShows = await getTVShows(search);
   tvShows.forEach(async (show) => {
@@ -56,36 +90,20 @@ const displayShows = async (search) => {
     commentButton.id = show.id;
     commentButton.classList.add('comment_button');
     commentButton.addEventListener('click', async () => {
-      // Fetch the comments for the specific show
       show.comments = await getMovieData(show.id);
-
-      // Call popUp function after setting the comments
       await popUp(show);
-
-      const updatedShow = await getMovieData(show.id);
-      show.comments = updatedShow;
-
-      const commentList = document.getElementById('comments-list');
-      commentList.innerHTML = '';
-
-      if (show.comments.length > 0) {
-        show.comments.forEach((comment) => {
-          const itemList = document.createElement('li');
-          itemList.innerHTML = `
-        <div>
-          <span>${comment.creation_date} </span>
-          <span class="user-name">${comment.username}: </span>
-          <span>${comment.comment}</span>
-        </div>
-      `;
-          commentList.append(itemList);
-        });
-      }
     });
     showCard.appendChild(commentButton);
     showsContainer.appendChild(showCard);
+    await loadLikes(show.id);
   });
+  await displayCountAll();
 };
+
+window.addEventListener('DOMContentLoaded', async () => {
+  const search = 'action';
+  await displayShows(search);
+});
 
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
