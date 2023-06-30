@@ -53,27 +53,30 @@ const popUp = async (show) => {
   closeBtn.addEventListener('click', () => {
     popUpContainer.remove();
   });
+
   const renderComments = async () => {
     const commentList = document.getElementById('comments-list');
     commentList.innerHTML = '';
 
     // Fetch the updated comments and populate the comment list
     const updatedComments = await getMovieData(show.id);
-    updatedComments.forEach((comment) => {
-      const itemList = document.createElement('li');
-      itemList.classList.add('list-items');
-      itemList.innerHTML = `
+    if (Array.isArray(updatedComments)) {
+      updatedComments.forEach((comment) => {
+        const itemList = document.createElement('li');
+        itemList.classList.add('list-items');
+        itemList.innerHTML = `
       <div>
         <span>${comment.creation_date} </span>
         <span class="user-name">${comment.username}: </span>
         <span>${comment.comment}</span>
       </div>
     `;
-      commentList.appendChild(itemList);
-    });
+        commentList.appendChild(itemList);
+      });
+    }
     commentsCounter();
   };
-  await renderComments();
+  renderComments();
   const addCommentBtn = document.getElementById('comment-btn');
   const commentForm = document.getElementById('new-comment');
 
