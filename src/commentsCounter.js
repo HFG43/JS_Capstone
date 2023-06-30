@@ -11,7 +11,8 @@ const commentsCounter = (commentsContainer) => {
   }
 
   const comments = commentsContainer.querySelectorAll('.comment').length;
-  return comments;
+  const commentsNumber = document.getElementById('comments-header');
+  commentsNumber.innerText = `Comments (${comments})`;
 };
 
 export default commentsCounter;

@@ -1,10 +1,9 @@
 import { getMovieData, createComment } from './comments.js';
-import getTVShows from './getTvShow.js';
+import commentsCounter from './commentsCounter.js';
 
 // Pop up function
 const popUp = async (show) => {
   const popUpContainer = document.createElement('article');
-  show.comments = await (getTVShows(show.id));
   popUpContainer.id = 'pop-up';
   popUpContainer.innerHTML = `
     <div class="pop-container">
@@ -32,7 +31,7 @@ const popUp = async (show) => {
          </div>
        </div>
        <div id="pop-up-comments">
-        <h3>Comments (${show.comments.length})</h3>
+        <h3 id="comments-header"></h3>
         <ul id="comments-list"></ul>
       </div>
       <div class="pop-up-form">
@@ -45,8 +44,9 @@ const popUp = async (show) => {
       </div>
      </div>
    `;
-  document.body.append(popUpContainer);
+
   show.comments = await (getMovieData(show.id));
+  document.body.append(popUpContainer);
 
   const closeBtn = document.getElementById('close-modal-btn');
   closeBtn.addEventListener('click', () => {
@@ -62,7 +62,7 @@ const popUp = async (show) => {
     const textAreaInput = document.getElementById('comment').value;
     await createComment(show.id, userInput, textAreaInput);
     // Validate that both the user input and comment text are not empty
-    if (userInput.trim() === '' || textAreaInput.trim() === '') {
+    if (userInput.trim() === '' && textAreaInput.trim() === '') {
     // Display an error message or take appropriate action
       return;
     }
@@ -84,6 +84,7 @@ const popUp = async (show) => {
     `;
       commentList.appendChild(itemList);
     });
+    commentsCounter();
   });
   // Add form submit event listener for validation
   commentForm.addEventListener('submit', (e) => {
