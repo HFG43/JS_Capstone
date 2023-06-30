@@ -23,6 +23,11 @@ const setNewShow = (programList) => {
   return tvShows;
 };
 
+window.addEventListener('DOMContentLoaded', async () => {
+  const search = 'action';
+  await displayShows(search); 
+});
+
 const getTVShows = async (search) => {
   if (search === undefined) {
     search = 'action';
@@ -33,8 +38,8 @@ const getTVShows = async (search) => {
   const programList = await resultPrograms.json();
   const newProgramList = setNewShow(programList);
   if (newProgramList.length <= 0) {
-    searchFormInput.placeholder = 'Please try with another TV Show or Genre';
-    searchFormInput.classList.add('error_input_show');
+    searchFormInput.placeholder = 'No data found, please try another or refresh the page';
+    searchFormInput.classList.add('error_input_show', 'error_input_show_height');   
   }
   return newProgramList;
 };
@@ -42,7 +47,7 @@ const getTVShows = async (search) => {
 const displayShows = async (search) => {
   showsContainer.innerHTML = '';
   searchFormInput.placeholder = 'Search for your favorite TV show or Genre';
-  searchFormInput.classList.remove('error_input_show');
+  searchFormInput.classList.remove('error_input_show', 'error_input_show_height');
   const tvShows = await getTVShows(search);
   tvShows.forEach(async (show) => {
     const showCard = document.createElement('div');
