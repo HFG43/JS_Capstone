@@ -2,8 +2,9 @@ import { getMovieData, createComment } from './comments.js';
 
 // Pop up function
 const popUp = async (show) => {
-  
   const popUpContainer = document.createElement('article');
+  const commentsContainer = document.getElementById('pop-up-comments');
+  const comments = commentsContainer.querySelectorAll('.comments-list').length;
   popUpContainer.id = 'pop-up';
   popUpContainer.innerHTML = `
     <div class="pop-container">
@@ -30,9 +31,9 @@ const popUp = async (show) => {
            </div>
          </div>
        </div>
-       <div class="pop-up-comments">
-        <h3>Comments (${show.comments.length})</h3>
-        <ul id="comments-list"></ul>
+       <div id="pop-up-comments">
+        <h3>Comments (${comments})</h3>
+        <ul class="comments-list"></ul>
       </div>
       <div class="pop-up-form">
         <h3>Add a comment</h3>
@@ -46,7 +47,6 @@ const popUp = async (show) => {
    `;
   document.body.append(popUpContainer);
   show.comments = await (getMovieData(show.id));
-  console.log('result', show.comments);
 
   const closeBtn = document.getElementById('close-modal-btn');
   closeBtn.addEventListener('click', () => {
