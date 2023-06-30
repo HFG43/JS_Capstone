@@ -2,7 +2,6 @@ import { getMovieData, createComment } from './comments.js';
 
 // Pop up function
 const popUp = async (show) => {
-  
   const popUpContainer = document.createElement('article');
   popUpContainer.id = 'pop-up';
   popUpContainer.innerHTML = `
