@@ -1,11 +1,13 @@
 import './style.css';
 import Shows from './shows.js';
-import { showsContainer, searchForm, searchFormInput } from './dynamic.js';
+import {
+  showsContainer, searchForm, searchFormInput,
+} from './dynamic.js';
 import likes from './images/Empty_Like.svg';
 import popUp from './popUp.js';
-// import postAppForID from './createAppId.js';
 import { addLikes, loadLikes, updateLikes } from './likes.js';
-// import { addLikes, updateLikes } from './likes.js';
+import { getMovieData } from './comments.js';
+import displayCountAll from './allItemsCounter.js';
 
 const setNewShow = (programList) => {
   let tvShows = [];
@@ -41,8 +43,8 @@ const getTVShows = async (search) => {
 
 const displayShows = async (search) => {
   showsContainer.innerHTML = '';
-  searchFormInput.placeholder = 'Search for your favorite TV show or Genre';
-  searchFormInput.classList.remove('error_input_show', 'error_input_show_height');
+  searchFormInput.placeholder = 'Search for your favorite TV show';
+  searchFormInput.classList.remove('error_input_show');
   const tvShows = await getTVShows(search);
   tvShows.forEach(async (show) => {
     const showCard = document.createElement('div');
@@ -88,12 +90,14 @@ const displayShows = async (search) => {
     commentButton.id = show.id;
     commentButton.classList.add('comment_button');
     commentButton.addEventListener('click', async () => {
+      show.comments = await getMovieData(show.id);
       await popUp(show);
     });
     showCard.appendChild(commentButton);
     showsContainer.appendChild(showCard);
     await loadLikes(show.id);
   });
+  await displayCountAll();
 };
 
 window.addEventListener('DOMContentLoaded', async () => {
