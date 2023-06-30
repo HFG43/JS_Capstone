@@ -4,6 +4,7 @@ import { showsContainer, searchForm, searchFormInput } from './dynamic.js';
 import likes from './images/Empty_Like.svg';
 import popUp from './popUp.js';
 import { addLikes, updateLikes } from './likes.js';
+import { getMovieData } from './comments.js';
 
 const setNewShow = (programList) => {
   let tvShows = [];
@@ -86,7 +87,31 @@ const displayShows = async (search) => {
     commentButton.id = show.id;
     commentButton.classList.add('comment_button');
     commentButton.addEventListener('click', async () => {
+      // Fetch the comments for the specific show
+      show.comments = await getMovieData(show.id);
+
+      // Call popUp function after setting the comments
       await popUp(show);
+
+      const updatedShow = await getMovieData(show.id);
+      show.comments = updatedShow;
+
+      const commentList = document.getElementById('comments-list');
+      commentList.innerHTML = '';
+
+      if (show.comments.length > 0) {
+        show.comments.forEach((comment) => {
+          const itemList = document.createElement('li');
+          itemList.innerHTML = `
+        <div>
+          <span>${comment.creation_date} </span>
+          <span class="user-name">${comment.username}: </span>
+          <span>${comment.comment}</span>
+        </div>
+      `;
+          commentList.append(itemList);
+        });
+      }
     });
     showCard.appendChild(commentButton);
     showsContainer.appendChild(showCard);
