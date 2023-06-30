@@ -73,6 +73,7 @@ const popUp = async (show) => {
     });
     commentsCounter();
   };
+  await renderComments();
   const addCommentBtn = document.getElementById('comment-btn');
   const commentForm = document.getElementById('new-comment');
 
