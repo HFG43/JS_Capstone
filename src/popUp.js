@@ -1,10 +1,10 @@
 import { getMovieData, createComment } from './comments.js';
+import getTVShows from './getTvShow.js';
 
 // Pop up function
 const popUp = async (show) => {
   const popUpContainer = document.createElement('article');
-
-  const comments = document.querySelectorAll('.comments-list').length;
+  show.comments = await (getTVShows(show.id));
   popUpContainer.id = 'pop-up';
   popUpContainer.innerHTML = `
     <div class="pop-container">
@@ -32,7 +32,7 @@ const popUp = async (show) => {
          </div>
        </div>
        <div id="pop-up-comments">
-        <h3>Comments (${comments})</h3>
+        <h3>Comments (${show.comments.length})</h3>
         <ul id="comments-list"></ul>
       </div>
       <div class="pop-up-form">
@@ -52,9 +52,10 @@ const popUp = async (show) => {
   closeBtn.addEventListener('click', () => {
     popUpContainer.remove();
   });
+  const commentList = document.getElementById('comments-list');
   const addCommentBtn = document.getElementById('comment-btn');
   const commentForm = document.getElementById('new-comment');
-  const commentList = document.getElementById('comments-list');
+
   addCommentBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     const userInput = document.getElementById('user').value;
