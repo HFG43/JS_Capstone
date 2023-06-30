@@ -38,7 +38,7 @@ const getTVShows = async (search) => {
   const programList = await resultPrograms.json();
   const newProgramList = setNewShow(programList);
   if (newProgramList.length <= 0) {
-    searchFormInput.placeholder = 'No data found, please try another or refresh the page';
+    searchFormInput.placeholder = 'No data found, please try another show or refresh the page';
     searchFormInput.classList.add('error_input_show', 'error_input_show_height');   
   }
   return newProgramList;
