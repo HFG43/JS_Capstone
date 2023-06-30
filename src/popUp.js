@@ -90,6 +90,7 @@ const popUp = async (show) => {
 
     // Clear existing comments before adding new ones
     commentForm.reset();
+    await renderComments();
   });
   // Add form submit event listener for validation
   commentForm.addEventListener('submit', (e) => {
