@@ -48,6 +48,7 @@ const popUp = async (show) => {
 
   document.body.append(popUpContainer);
   show.comments = await (getMovieData(show.id));
+  document.body.append(popUpContainer);
 
   const closeBtn = document.getElementById('close-modal-btn');
   closeBtn.addEventListener('click', () => {
