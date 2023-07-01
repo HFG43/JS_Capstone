@@ -152,7 +152,7 @@
 }
 
 .footer {
-  margin: 10% 0 0 0;
+  margin: 10% 0 12px 5%;
   font-size: 0.7rem;
   font-family: 'YsabeauOffice-ExtraBold', sans-serif;
 }
@@ -220,7 +220,7 @@
   }
 
   .card_title {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0.5rem;
     padding: 15px 0;
   }
@@ -232,7 +232,7 @@
 
   .like_icon {
     height: 30px;
-    margin-left: 35%;
+    margin-left: 0;
   }
 
   .like_icon:hover {
