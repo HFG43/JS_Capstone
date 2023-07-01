@@ -1,12 +1,12 @@
-import { selectShows, displayAllCounter } from './dynamic.js';
-
-const countAll = async () => {
+const countAll = () => {
+  const selectShows = document.getElementsByClassName('show_container');
   const counter = selectShows.length;
   return counter;
 };
 
-const displayCountAll = async () => {
-  const countValue = (await countAll()).toString();
+const displayCountAll = () => {
+  const displayAllCounter = document.getElementById('all_elements_counter');
+  const countValue = (countAll()).toString();
   displayAllCounter.innerText = `(${countValue})`;
 };
 
