@@ -14,6 +14,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style: none;
 }
 
 .header {
@@ -157,6 +158,11 @@
   font-family: 'YsabeauOffice-ExtraBold', sans-serif;
 }
 
+.movie-image {
+  height: auto;
+  width: 75%;
+}
+
 @media all and (min-width: 768px) {
   .header {
     justify-content: space-between;
@@ -244,6 +250,11 @@
     font-size: 1rem;
     text-align: center;
   }
+
+  .movie-image {
+    height: auto;
+    width: 25%;
+  }
 }
 
 article#pop-up {
@@ -264,7 +275,7 @@ article#pop-up {
   display: flex;
   flex-direction: column;
   width: 60%;
-  height: 60%;
+  height: 95%;
   overflow-y: scroll;
   padding: 20px;
   box-sizing: border-box;
@@ -290,11 +301,6 @@ article#pop-up {
   margin-bottom: 30px;
 }
 
-.movie-image {
-  height: 300px;
-  width: 250px;
-}
-
 .pop-up-content {
   display: flex;
   justify-content: center;
@@ -312,7 +318,11 @@ article#pop-up {
 
 .movie-data {
   padding-left: 30px;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
+}
+
+.list-items {
+  margin: 4px 0 4px 0;
 }
 
 label {
