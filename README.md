@@ -111,12 +111,17 @@ git clone https://github.com/HFG43/JS_Capstone
 ### Install
 
 Open index.html file with your Code Editor, and review the behaviour of the page under different sizes.
+On the command Line run 
+
+npm install 
+
+to install dependencies in package.json. This will make the app work.
 
 ### Usage
 
 To run the project, execute the following command:
 
-- In the command line:
+- In the command line: 
  run "npm start"
 
 ### Run tests
